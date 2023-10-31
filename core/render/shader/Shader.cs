@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Anton.core.utilities;
 using OpenTK.Graphics.OpenGL4;
 
 namespace Anton.render.shader;
@@ -35,10 +36,7 @@ public class Shader
 
     public static Shader loadShader(string vertexPath, string fragmentPath)
     {
-        string absVPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"render\shader\shaders\" + vertexPath);
-        string absFPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"render\shader\shaders\" + fragmentPath);
-        
-        Shader shader = new Shader(absVPath, absFPath);
+        Shader shader = new Shader();
         return shader;
     }
 
@@ -50,17 +48,19 @@ public class Shader
         }
     }
 
-    public Shader(string vertexShaderPath, string fragmentShaderPath)
+    public Shader()
     {
         int vertexShader, fragmentShader;
-        string vertexSource = File.ReadAllText(vertexShaderPath);
-        string fragmentSource = File.ReadAllText(fragmentShaderPath);
+        string vertexSource = FileReader.loadShaderData("shader.vert");
+        string fragmentSource = FileReader.loadShaderData("shader.frag");
 
         vertexShader = GL.CreateShader(ShaderType.VertexShader);
         GL.ShaderSource(vertexShader, vertexSource);
 
         fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
         GL.ShaderSource(fragmentShader, fragmentSource);
+
+        bool hasSucceeded = true;
         
         //Now compile the shaders now that we've loaded everything in
         GL.CompileShader(vertexShader);
@@ -69,6 +69,7 @@ public class Shader
         {
             string failureReason = GL.GetShaderInfoLog(vertexShader);
             Console.WriteLine("Error loading vertex shader: " + failureReason);
+            hasSucceeded = false;
         }
         
         GL.CompileShader(fragmentShader);
@@ -77,7 +78,15 @@ public class Shader
         {
             string failureReason = GL.GetShaderInfoLog(fragmentShader);
             Console.WriteLine("Error loading fragment shader: " + failureReason);
+            hasSucceeded = false;
         }
+
+        if (hasSucceeded == false)
+        {
+            Console.WriteLine("Error loading shader program, vertex/fragment shader not correctly loaded");
+            return;
+        }
+        
 
         shaderHandle = GL.CreateProgram();
         GL.AttachShader(shaderHandle, vertexShader);
@@ -90,7 +99,11 @@ public class Shader
         {
             string failureReason = GL.GetProgramInfoLog(shaderHandle);
             Console.WriteLine("Error loading shader program: " + failureReason);
+            GL.DeleteShader(vertexShader);
+            GL.DeleteShader(fragmentShader);
+            return;
         }
+        Console.WriteLine("Successfully loaded shader program: " + shaderHandle);
         
         //If everything is set up correctly, all that is left to do is clean up the old shaders
         GL.DetachShader(shaderHandle, vertexShader);

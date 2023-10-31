@@ -9,15 +9,25 @@
 
     <ItemGroup>
       <PackageReference Include="OpenTK" Version="4.8.1" />
+      <PackageReference Include="StbImageSharp" Version="2.27.13" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="render\shader\shaders\shader.vert" />
-      <Content Include="render\shader\shaders\shader.vert">
+      <None Remove="render\shader\shaders\shader.frag" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="core\render\shader\shaders\shader.vert" />
+      <Content Include="core\render\shader\shaders\shader.vert">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
-      <None Remove="render\shader\shaders\shader.frag" />
-      <Content Include="render\shader\shaders\shader.frag">
+      <None Remove="core\render\shader\shaders\shader.frag" />
+      <Content Include="core\render\shader\shaders\shader.frag">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="core\render\textures\troll.png" />
+      <Content Include="core\render\textures\troll.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
