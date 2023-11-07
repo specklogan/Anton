@@ -32,4 +32,11 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="core\render\textures\brick_block.png" />
+      <Content Include="core\render\textures\brick_block.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

@@ -193,6 +193,15 @@
           }
         }
       },
+      "StbImageSharp/2.27.13": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/StbImageSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/StbImageSharp.dll": {}
+        }
+      },
       "System.Runtime.CompilerServices.Unsafe/5.0.0": {
         "type": "package",
         "compile": {
@@ -375,6 +384,19 @@
         "opentk.windowing.graphicslibraryframework.nuspec"
       ]
     },
+    "StbImageSharp/2.27.13": {
+      "sha512": "tHnP2RHgFzWbOS96UqvRO/LYU1WmpMT1bKiig45we+rpaXacBr11Fq2IBF+MqlgyLyNXxRz18E66qr4R9YlSbg==",
+      "type": "package",
+      "path": "stbimagesharp/2.27.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net471/StbImageSharp.dll",
+        "lib/netstandard2.0/StbImageSharp.dll",
+        "stbimagesharp.2.27.13.nupkg.sha512",
+        "stbimagesharp.nuspec"
+      ]
+    },
     "System.Runtime.CompilerServices.Unsafe/5.0.0": {
       "sha512": "ZD9TMpsmYJLrxbbmdvhwt9YEgG5WntEnZ/d1eH8JBX9LBp+Ju8BSBhUGbZMNVHHomWo2KVImJhTDl2hIgw/6MA==",
       "type": "package",
@@ -410,35 +432,29 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "OpenTK >= 4.8.1"
+      "OpenTK >= 4.8.1",
+      "StbImageSharp >= 2.27.13"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\speck\\.nuget\\packages\\": {},
-    "C:\\Users\\speck\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {}
+    "/home/goose/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Programming\\CS\\Anton\\Anton\\Anton.csproj",
+      "projectUniqueName": "/home/goose/RiderProjects/Anton/Anton.csproj",
       "projectName": "Anton",
-      "projectPath": "F:\\Programming\\CS\\Anton\\Anton\\Anton.csproj",
-      "packagesPath": "C:\\Users\\speck\\.nuget\\packages\\",
-      "outputPath": "F:\\Programming\\CS\\Anton\\Anton\\obj\\",
+      "projectPath": "/home/goose/RiderProjects/Anton/Anton.csproj",
+      "packagesPath": "/home/goose/.nuget/packages/",
+      "outputPath": "/home/goose/RiderProjects/Anton/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Users\\speck\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\speck\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Users\\speck\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/goose/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -460,6 +476,10 @@
           "OpenTK": {
             "target": "Package",
             "version": "[4.8.1, )"
+          },
+          "StbImageSharp": {
+            "target": "Package",
+            "version": "[2.27.13, )"
           }
         },
         "imports": [
@@ -478,7 +498,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/goose/Documents/Net/sdk/7.0.403/RuntimeIdentifierGraph.json"
       }
     }
   }

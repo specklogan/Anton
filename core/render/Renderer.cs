@@ -26,7 +26,7 @@ public class Renderer
         GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
         StbImage.stbi_set_flip_vertically_on_load(1);
 
-        texture = new Texture2D("troll.png");
+        texture = new Texture2D("brick_block.png", true);
         
         GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
         
@@ -50,17 +50,23 @@ public class Renderer
         GL.DeleteBuffer(VBO);
     }
 
-    private static int last;
+    private static double last;
     private static bool ascending = true;
     
     public static void onRender(double delta)
     {
+        last += 0.01;
         GL.Clear(ClearBufferMask.ColorBufferBit);
         
         GL.BindVertexArray(VAO);
         
         texture.use();
         shader.use();
+
+        int loc = OpenTK.Graphics.ES20.GL.GetUniformLocation(shader.getID(), "transform");
+        Matrix4 rotation = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians((int)last));
+        GL.UniformMatrix4(loc, true, ref rotation);
+        
         GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
     }
 
